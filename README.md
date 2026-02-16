@@ -105,6 +105,30 @@ renderStr, _ := ascii.RenderOpts("Hello Fonts", options)
 fmt.Print(renderStr)
 ```
 
+### SVG Export
+The SVG parser allows you to generate SVG-compatible output with proper color support:
+```go
+import "github.com/mbndr/figlet4go"
+
+// ...
+
+ascii := figlet4go.NewAsciiRender()
+
+options := figlet4go.NewRenderOptions()
+p, _ := figlet4go.GetParser("svg")
+options.Parser = *p
+options.FontColor = []figlet4go.Color{
+	figlet4go.ColorRed,
+	figlet4go.ColorGreen,
+	figlet4go.ColorBlue,
+}
+
+renderStr, _ := ascii.RenderOpts("SVG", options)
+// renderStr contains SVG <text> elements with <tspan> for colors
+// Wrap in a complete SVG document as needed
+fmt.Print(renderStr)
+```
+
 ## Parsers
 There a currently these Parsers available:
 
@@ -112,6 +136,7 @@ There a currently these Parsers available:
 | --------- | ------                                                     |
 | ParserTerminal  | Parses the result directly |
 | ParserHTML   | Parses a pasteable `<code>` html block  |
+| ParserSVG   | Parses the result as SVG `<text>` elements with proper color support  |
 
 ## Fonts
 

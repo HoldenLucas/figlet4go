@@ -17,11 +17,12 @@ type Parser struct {
 }
 
 var parsers map[string]Parser = map[string]Parser{
-
 	// Default terminal parser
 	"terminal": {"terminal", "", "", "\n", nil},
 	// Parser for HTML code
 	"html": {"html", "<code>", "</code>", "<br>", map[string]string{" ": "&nbsp;"}},
+	// Parser for SVG
+	"svg": {"svg", "<text>", "</text>", "<br/>", map[string]string{" ": "&#160;"}},
 }
 
 // GetParser returns a parser by its key

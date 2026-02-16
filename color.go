@@ -62,6 +62,9 @@ func (tc TrueColor) getPrefix(p Parser) string {
 
 	case "html":
 		return fmt.Sprintf("<span style='color: rgb(%d,%d,%d);'>", tc.r, tc.g, tc.b)
+
+	case "svg":
+		return fmt.Sprintf("<tspan fill='rgb(%d,%d,%d)'>", tc.r, tc.g, tc.b)
 	}
 
 	return ""
@@ -76,6 +79,9 @@ func (tc TrueColor) getSuffix(p Parser) string {
 
 	case "html":
 		return "</span>"
+
+	case "svg":
+		return "</tspan>"
 	}
 
 	return ""
@@ -106,6 +112,11 @@ func (ac AnsiColor) getPrefix(p Parser) string {
 		// Get the TrueColor for the AnsiColor
 		tc := tcfac[ac]
 		return tc.getPrefix(p)
+
+	case "svg":
+		// Get the TrueColor for the AnsiColor
+		tc := tcfac[ac]
+		return tc.getPrefix(p)
 	}
 
 	return ""
@@ -120,6 +131,11 @@ func (ac AnsiColor) getSuffix(p Parser) string {
 		return fmt.Sprintf("%v[0m", escape)
 
 	case "html":
+		// Get the TrueColor for the AnsiColor
+		tc := tcfac[ac]
+		return tc.getSuffix(p)
+
+	case "svg":
 		// Get the TrueColor for the AnsiColor
 		tc := tcfac[ac]
 		return tc.getSuffix(p)
