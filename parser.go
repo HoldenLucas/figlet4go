@@ -21,7 +21,7 @@ var parsers map[string]Parser = map[string]Parser{
 	"terminal": {"terminal", "", "", "\n", nil},
 	// Parser for HTML code
 	"html": {"html", "<code>", "</code>", "<br>", map[string]string{" ": "&nbsp;"}},
-	"svg":  {"html", "<code>", "</code>", "<br/>", map[string]string{" ": "&#160;"}},
+	"svg":  {"html", "<text>", "</text>", "<br/>", map[string]string{" ": "&#160;"}},
 }
 
 // GetParser returns a parser by its key
