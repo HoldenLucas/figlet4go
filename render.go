@@ -96,12 +96,14 @@ func (ar *AsciiRender) RenderOpts(str string, opt *RenderOptions) (string, error
 
 	// Foreach line of the font height
 	for curLine := 0; curLine < font.height; curLine++ {
+		result += opt.Parser.LinePrefix
+
 		// Add the current line of the char to the result
 		for i := range chars {
 			result += chars[i].GetLine(curLine, opt.Parser)
 		}
-		// A new line at the end
-		result += opt.Parser.NewLine
+
+		result += opt.Parser.LineSuffix
 	}
 
 	result += opt.Parser.Suffix
